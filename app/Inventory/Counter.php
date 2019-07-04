@@ -17,7 +17,11 @@ class Counter
 	 */
 	public function countTotalQuantity() {
 		// todo return an integer representing the amount of items (quantity) left from the Repository.
-		return 0;
+		
+		$data = $this->repository->get();
+
+		$quantity = $data->sum('quantity');
+		return $quantity;
 	}
 
 	/**
