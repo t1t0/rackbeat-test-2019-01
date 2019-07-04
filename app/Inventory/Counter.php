@@ -31,6 +31,7 @@ class Counter
 	 */
 	public function calculateCostPrice( $quantity = 10 ) {
 		// todo return an double representing the cost price for $quantity.
+		
 		return 0.0;
 	}
 
@@ -39,6 +40,14 @@ class Counter
 	 */
 	public function calculateTotalValue() {
 		// todo return an double representing the value of all transactions.
-		return 0.0;
+		$data = $this->repository->get();
+		$tvalue = 0;
+		foreach ($data as $dat) {
+			$value = $dat['quantity']*$dat['unit_cost_price'];
+			$tvalue += $value;
+		}
+
+		
+		return $tvalue;
 	}
 }
