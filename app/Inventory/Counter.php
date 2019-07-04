@@ -31,8 +31,18 @@ class Counter
 	 */
 	public function calculateCostPrice( $quantity = 10 ) {
 		// todo return an double representing the cost price for $quantity.
-		
-		return 0.0;
+		$data = $this->repository->get();
+
+		$items = $data->sum('quantity');
+		$tvalue = 0;
+		foreach ($data as $dat) {
+			$value = $dat['quantity']*$dat['unit_cost_price'];
+			$tvalue += $value;
+		}
+
+		$costprice = ($tvalue/$items)*$quantity;
+
+		return $costprice;
 	}
 
 	/**
